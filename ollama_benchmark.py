@@ -70,13 +70,7 @@ def build_sysinfo_html(prompt, timestamp, gpu_info, ollama_info):
 """
 
 def main(args):
-    parser = argparse.ArgumentParser(description="Ollama Benchmark Tool",formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("--prompt", type=str, default="Was ist ein Dieselmotor?")
-    parser.add_argument("--output", type=str, default="benchmark")
-    parser.add_argument("--no-chart", action="store_true")
-    parser.add_argument("--timeout", type=int, default=60)
-    parser.add_argument("--host", type=str, default="http://localhost:11434")
-    args = parser.parse_args()
+    print(f"HOST: {args.host}")
 
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
     html_filename = f"{args.output}_{timestamp}.html"
@@ -243,6 +237,11 @@ drawChart([{','.join(f'"{name}"' for name in model_names)}], [{','.join(str(r) f
     webbrowser.open("file://" + str(Path(html_filename).resolve()))
 
 if __name__ == "__main__":
-  parser = argparse.ArgumentParser(...)
+  parser = argparse.ArgumentParser(description="Ollama Benchmark Tool",formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+  parser.add_argument("--prompt", type=str, default="Was ist ein Dieselmotor?")
+  parser.add_argument("--output", type=str, default="benchmark")
+  parser.add_argument("--no-chart", action="store_true")
+  parser.add_argument("--timeout", type=int, default=60)
+  parser.add_argument("--host", type=str, default="http://localhost:11434")
   args = parser.parse_args()
   main(args)
